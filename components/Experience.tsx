@@ -42,7 +42,11 @@ const Experience = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            setVisibleItems((prev) => new Set([...prev, index]));
+            setVisibleItems((prev) => {
+              const next = new Set(prev);
+              next.add(index);
+              return next;
+            });
           }
         });
       },
